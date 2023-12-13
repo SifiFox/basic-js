@@ -15,13 +15,16 @@ const {isString} = require("mocha/lib/utils");
  *
  */
 function createDreamTeam(members) {
-  let dreamteam = ''
-  members.map(member => {
-    if(isString(member)){
-      dreamteam += member[0]
+  if (!members || !Array.isArray(members)) return false;
+  let team = ''
+  members = members.sort();
+  for(let i = 0; i < members.length; i++){
+    if(typeof (members[i]) == 'string') {
+      team += members[i].trimStart().slice(0,1)
     }
-  })
-  return dreamteam.split('').sort().join('')
+  }
+  team = team.toUpperCase().split('').sort().join('');
+  return team
 }
 
 module.exports = {
