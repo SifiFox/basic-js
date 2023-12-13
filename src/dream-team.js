@@ -1,4 +1,5 @@
 const { NotImplementedError } = require('../extensions/index.js');
+const {isString} = require("mocha/lib/utils");
 
 /**
  * Create name of dream team based on the names of its members
@@ -13,9 +14,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
-function createDreamTeam(/* members */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function createDreamTeam(members) {
+  let dreamteam = ''
+  members.map(member => {
+    if(isString(member)){
+      dreamteam += member[0]
+    }
+  })
+  return dreamteam.split('').sort().join('')
 }
 
 module.exports = {
